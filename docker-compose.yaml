@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+
+  postgres:
+    container_name: conexao_db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: "tasks"
+      POSTGRES_PASSWORD: "senha123"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
+    networks:
+      - default
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "tasks@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "password"
+    ports:
+      - "8082:80"
+    depends_on:
+      - postgres
+    networks:
+      - default
+    restart: always
+
+  flask_app:
+    build:
+      context: .
+      dockerfile: Dockerfile-python
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    copy:
+      - "./backend/app/:/app/app"
+      - "./backend/app/models/:/app/models"
+      - "./backend/app/routes/:/app/routes"
+    networks:
+      - default
+    restart: always
+
+networks:
+  default:
+    name: tasks
