@@ -1,0 +1,29 @@
+# Use a imagem oficial do Python
+FROM python:3.8
+
+# Defina o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copie os arquivos necessários para o contêiner
+COPY ./backend/requirements.txt .
+# COPY ./backend/app.py .
+COPY ./backend/app/ ./app
+COPY ./backend/app/models/ ./models
+COPY ./backend/app/routes/ ./routes
+COPY ./backend/run.py .
+
+# Instale as dependências do Flask
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN apt-get update && \
+    apt-get install -y libpq-dev gcc
+
+RUN apt-get install -y libpq-dev
+
+# Exponha a porta em que o Flask estará rodando
+EXPOSE 5000
+
+# Comando para iniciar o aplicativo Flask
+# CMD ["python", "app.py"]
+CMD ["python", "run.py"]
+
