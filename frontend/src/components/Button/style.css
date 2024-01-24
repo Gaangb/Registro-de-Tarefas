@@ -1,0 +1,32 @@
+.link_button {
+  width: 103%;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  color: #247ed8;
+  border: 1px solid #247ed8;
+  text-align: center;
+  text-decoration: none;
+}
+
+.link_button:hover {
+  background-color: #247ed8;
+  color: white;
+}
+
+.form_button {
+  width: 48%;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+  color: #247ed8;
+  border: 1px solid #247ed8;
+  text-align: center;
+}
+
+.form_button:hover {
+  background-color: #247ed8;
+  color: #fff;
+}
