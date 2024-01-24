@@ -1,0 +1,12 @@
+.container_geral {
+  width: 100vw;
+  height: 100vh;
+}
+
+
+
+@media (max-width:490px){
+  .container_interno{
+    height: 80vh;
+  }
+}
