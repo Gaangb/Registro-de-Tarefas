@@ -1,0 +1,30 @@
+.container_list {
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.top_list{
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.task_list {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.top_list_render{
+  max-height: 80vh;
+}
+
+.task_list > div{
+  width: 20%;
+}
+.task_list > div > p{
+  text-align: center;
+}
