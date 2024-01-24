@@ -41,6 +41,20 @@
   background-color: #247ed8;
 }
 
+.customer_container.modal-open {
+  pointer-events: none;
+}
+
+.customer_container.modal-open::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
 @media (max-width: 490px) {
   .container_header {
     font-size: 25px;
