@@ -39,10 +39,6 @@ services:
       - "5000:5000"
     depends_on:
       - postgres
-    copy:
-      - "./backend/app/:/app/app"
-      - "./backend/app/models/:/app/models"
-      - "./backend/app/routes/:/app/routes"
     networks:
       - default
     restart: always
