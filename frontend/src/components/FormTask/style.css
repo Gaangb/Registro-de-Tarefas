@@ -34,14 +34,15 @@
   display: flex;
   width: 80%;
   padding: 4px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 14px;
+  margin: auto;
 }
 
 .radio_group >  div {
   display: flex;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .radio_group >  div > label {
