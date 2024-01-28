@@ -12,6 +12,17 @@ def get_tasks():
         return jsonify({'status': 'falha ao obter tasks',
                         'mensagem': e.args[0]})
 
+@main.route('/get_task_by_id/<int:id>', methods=['GET'])
+def get_task_by_id(id):
+    try:
+        task = Tasks.query.get(id)
+        if not task:
+            raise ValueError('Task inexistente')
+        return jsonify(task.to_dict())
+    except ValueError as e:
+        return jsonify({'status': 'falha ao obter task',
+                        'mensagem': e.args[0]})
+    
 @main.route('/add_task', methods=['POST'])
 def add_task():
     try:
@@ -24,6 +35,7 @@ def add_task():
             raise KeyError('O campo "data" é obrigatório.')
         if not dados['status_tarefa']:
             raise KeyError('O campo "status" é obrigatório.')
+        
         nova_task = Tasks(
                 titulo_tarefa=dados['titulo_tarefa'],
                 descricao_tarefa=dados['descricao_tarefa'],
@@ -38,7 +50,7 @@ def add_task():
                         'mensagem': e.args[0]})
     
 @main.route('/update_task/<int:id>', methods=['PUT'])
-def update_tasks(id):
+def update_task(id):
     try:
         dados = request.get_json()
         task = Tasks.query.get(id)
