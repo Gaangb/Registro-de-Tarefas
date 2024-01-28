@@ -154,7 +154,7 @@ export default function FormTask({
           onClick={onCancelButtonClick}
         />
         <Button
-          text="Confirmar"
+          text="Salvar"
           customClass="form_button"
           onClick={onConfirmClick}
         />

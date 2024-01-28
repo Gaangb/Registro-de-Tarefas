@@ -108,10 +108,10 @@ export function CustomerProvider({ children }) {
           },
         }
       );
+      setTasks((prevTasks) => [...prevTasks, response.data]);
     } catch (error) {
       console.error("Erro ao atualizar dados da API:", error);
     }
-    setTasks([...tasks, task]);
   }
 
   const parseStrToDate = useCallback((date) => {
