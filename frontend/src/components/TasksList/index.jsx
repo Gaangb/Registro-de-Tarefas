@@ -1,18 +1,15 @@
-import { useEffect } from "react";
-import { useCustomer } from "../../hooks/CustomerHooks";
+import { memo } from "react";
 import TaskCard from "../TaskCard";
 import "./style.css";
 
-export default function TasksList() {
-  const { tasks, filteredTasks, isFiltered, setFilteredTasks } = useCustomer();
-
-  useEffect(() => {
-    if (!isFiltered) {
-      setFilteredTasks(tasks);
-    }
-  }, [tasks, isFiltered, setFilteredTasks]);
-
-  const renderTask = isFiltered ? filteredTasks || [] : tasks;
+function TasksList({
+  tasks,
+  setShowFormTask,
+  setCurrentTask,
+  setTasks,
+  getTaskById,
+  deleteTaskById,
+}) {
 
   return (
     <div className="container_list">
@@ -28,18 +25,21 @@ export default function TasksList() {
         </div>
       </div>
       <div className="task_list">
-        {["Pendente", "Executando", "Concluída"].map((status) => (
-          <div key={status}>
+        {["pendente", "executando", "concluida"].map((statusTarefa) => (
+          <div key={statusTarefa}>
             <div className="top_list_render">
-              {renderTask
-                .filter((note) => note.status === status.toLowerCase())
+              {tasks
+                ?.filter((note) => note.status_tarefa === statusTarefa)
                 .map((note) => (
                   <div key={note.id}>
                     <TaskCard
-                      id={note.id}
-                      title={note.title}
-                      taskDescription={note.description}
-                      taskDate={note.date}
+                      note={note}
+                      tasks={tasks}
+                      setShowFormTask={setShowFormTask}
+                      setCurrentTask={setCurrentTask}
+                      setTasks={setTasks}
+                      getTaskById={getTaskById}
+                      deleteTaskById={deleteTaskById}
                     />
                   </div>
                 ))}
@@ -50,3 +50,5 @@ export default function TasksList() {
     </div>
   );
 }
+
+export default memo(TasksList);
