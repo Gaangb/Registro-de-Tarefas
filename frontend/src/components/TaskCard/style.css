@@ -1,12 +1,12 @@
 .container_card {
   display: flex;
   flex-direction: column;
-  background-color: #247ed81c;
+  background-color: #FFF0F5;
   padding: 14px;
   border-radius: 5px;
   margin: 5px 0px;
   align-items: center;
-  color: #252323;
+  color: #363636;
   height: 16vh;
 }
 
@@ -19,6 +19,18 @@
 .container_card_title > p{
   font-size: 18px;
   font-weight: bold;
+}
+
+.container_card_title_pendente{
+  border-top: 5px solid #FF6347;
+}
+
+.container_card_title_executando{
+  border-top: 5px solid #B0E0E6;
+}
+
+.container_card_title_concluida{
+   border-top: 5px solid #32CD32;
 }
 
 .container_card_buttons > button:nth-child(1){
@@ -58,7 +70,7 @@
 }
 
 .container_card_description{
-  max-height: 8vh;
+  height: 8vh;
   overflow-x: hidden;
   overflow-y: hidden;
   transition: max-height 0.3s;
@@ -67,7 +79,7 @@
 }
 
 .container_card_description:hover {
-  max-height: 8vh;
+  height: 8vh;
   overflow-y: auto
 }
 
@@ -87,6 +99,7 @@
 
 .container_card_date{
   font-size: 8px;
+  color: gray;
 }
 
 @media (max-width: 490px) {
