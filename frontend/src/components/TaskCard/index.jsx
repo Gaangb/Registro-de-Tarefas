@@ -1,32 +1,27 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from "react";
 import { VscEdit, VscTrash } from "react-icons/vsc";
 import "./style.css";
 
-function TaskCard({
-  getTaskById,
-  deleteTaskById,
-  note,
-  setShowFormTask,
-}) {
+function TaskCard({ getTaskById, deleteTaskById, note, setShowFormTask }) {
   const [customClass, setCustomClass] = useState("");
 
   function changeStatusTarefa() {
-    if(note.status_tarefa === "pendente") {
-      setCustomClass("container_card_title_pendente")
-    } else if(note.status_tarefa === "executando") {
-      setCustomClass("container_card_title_executando")
-    } else if(note.status_tarefa === "concluida") {
-      setCustomClass("container_card_title_concluida")
+    if (note.status_tarefa === "pendente") {
+      setCustomClass("container_card_title_pendente");
+    } else if (note.status_tarefa === "executando") {
+      setCustomClass("container_card_title_executando");
+    } else if (note.status_tarefa === "concluida") {
+      setCustomClass("container_card_title_concluida");
     }
   }
   const getTask = (id) => {
     setShowFormTask(true);
     getTaskById(id);
-  }
+  };
 
   useEffect(() => {
-    changeStatusTarefa()
-  },[])
+    changeStatusTarefa();
+  }, []);
 
   return (
     <div className={customClass + " container_card"}>

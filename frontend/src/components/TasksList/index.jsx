@@ -10,7 +10,6 @@ function TasksList({
   getTaskById,
   deleteTaskById,
 }) {
-
   return (
     <div className="container_list">
       <div className="top_list">

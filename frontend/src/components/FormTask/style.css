@@ -40,12 +40,12 @@
   margin: auto;
 }
 
-.radio_group >  div {
+.radio_group > div {
   display: flex;
   margin-left: 10px;
 }
 
-.radio_group >  div > label {
+.radio_group > div > label {
   display: flex;
   margin-left: 4px;
 }

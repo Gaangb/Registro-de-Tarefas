@@ -12,9 +12,7 @@ export default function Header({
   setTasks,
   updateTask,
   addTask,
-  // setNewId,
 }) {
-
   function onButtonClick() {
     setShowFormTask(true);
   }

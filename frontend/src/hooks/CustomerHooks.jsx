@@ -2,12 +2,10 @@ import {
   createContext,
   useContext,
   useState,
-  useCallback,
   useEffect,
   useMemo,
 } from "react";
 import { format, parse } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import axios from "axios";
 
 const CustomerContext = createContext();
@@ -15,9 +13,6 @@ const CustomerContext = createContext();
 export function CustomerProvider({ children }) {
   const [tasks, setTasks] = useState([]);
   const [showformTask, setShowFormTask] = useState(false);
-  const [newId, setNewId] = useState(null);
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
   const [currentTask, setCurrentTask] = useState({
     id: 0,
     titulo_tarefa: "",
@@ -25,9 +20,6 @@ export function CustomerProvider({ children }) {
     data_tarefa: "",
     status_tarefa: "",
   });
-  const [nextid, setNextid] = useState(1);
-  const [showForm, setShowForm] = useState(false);
-  const [title, setTitle] = useState("");
 
   const fetchTasks = async () => {
     try {
@@ -114,59 +106,27 @@ export function CustomerProvider({ children }) {
     }
   }
 
-  const parseStrToDate = useCallback((date) => {
-    const inputDate = date;
-    const [year, month, day] = inputDate.split("-");
-    const selectedDate = new Date(Number(year), Number(month) - 1, Number(day));
-
-    return formatDate(selectedDate);
-  }, []);
-
-  const formatDate = (date) => {
-    const formattedDate = format(date, "eeee, dd MMMM", { locale: ptBR });
-    return new Date(formattedDate);
-  };
-
   const value = useMemo(
     () => ({
       showformTask,
       currentTask,
       tasks,
-      newId,
       updateTask,
-      isFiltered,
-      isLogged,
-      nextid,
-      showForm,
-      title,
       addTask,
       getTaskById,
       deleteTaskById,
-      parseStrToDate,
       setShowFormTask,
       setCurrentTask,
       setTasks,
-      setNewId,
-      setIsFiltered,
-      setIsLogged,
     }),
     [
       showformTask,
       currentTask,
       tasks,
-      newId,
-      isFiltered,
-      isLogged,
-      nextid,
-      showForm,
-      title,
       addTask,
-      parseStrToDate,
       setShowFormTask,
       setCurrentTask,
       setTasks,
-      setNewId,
-      setIsFiltered,
     ]
   );
 

@@ -11,7 +11,6 @@ export default function FormTask({
   setShowFormTask,
   setCurrentTask,
   setTasks,
-  setNewId,
   updateTask,
   addTask,
 }) {
@@ -52,11 +51,15 @@ export default function FormTask({
         setTasks(updatedTasks);
         setShowFormTask(false);
       } else {
-        const dateObject = parse(currentTask.data_tarefa, 'yyyy-MM-dd', new Date());
-        const formattedDate = format(dateObject, 'dd-MM-yyyy');
+        const dateObject = parse(
+          currentTask.data_tarefa,
+          "yyyy-MM-dd",
+          new Date()
+        );
+        const formattedDate = format(dateObject, "dd-MM-yyyy");
         const updatedTask = {
           ...currentTask,
-          data_tarefa: formattedDate
+          data_tarefa: formattedDate,
         };
         addTask(updatedTask);
         setShowFormTask(false);
@@ -71,13 +74,12 @@ export default function FormTask({
   }
 
   const handleInputChangeItem = (event) => {
-    console.log('event', event.target.value)
     const { name, value } = event.target;
     setCurrentTask({
       ...currentTask,
       [name]: value,
     });
-  }
+  };
 
   return (
     <Container customClass="form_container">
@@ -86,7 +88,7 @@ export default function FormTask({
           name="titulo_tarefa"
           type="text"
           maxLength={15}
-          customClass="search form_input"
+          customClass="form_input"
           placeholder="Adicione um título"
           value={currentTask.titulo_tarefa}
           onChange={handleInputChangeItem}
@@ -97,7 +99,7 @@ export default function FormTask({
           name="data_tarefa"
           type="date"
           maxLength={15}
-          customClass="search form_input"
+          customClass="form_input"
           placeholder="Digite quando aconteceu"
           value={currentTask.data_tarefa}
           onChange={handleInputChangeItem}
@@ -108,7 +110,7 @@ export default function FormTask({
           name="descricao_tarefa"
           type="text"
           maxLength={100}
-          customClass="search form_input"
+          customClass="form_input"
           placeholder="Descrição"
           value={currentTask.descricao_tarefa}
           onChange={handleInputChangeItem}
